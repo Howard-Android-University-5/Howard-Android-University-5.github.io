@@ -6,6 +6,7 @@
 <body>
   <div><b>Click Me!</b></div>
   <div id="emotion"></div>
+<div id="debug"></div>
   <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js" type="text/javascript"></script>
   <script src="https://sdk.morphcast.com/mphtools/v1.0/mphtools.js"></script>
 	<script src="https://ai-sdk.morphcast.com/v1.16/ai-sdk.js"></script>
@@ -19,6 +20,7 @@
 	   .then(({ start, stop }) => start());
 	
 	const emo_div = document.querySelector("#emotion");
+	const debug_div = document.querySelector("#debug");
 
 	let happyCounter = 0;
 	let sadCounter = 0;
@@ -59,6 +61,7 @@
 		
 	// when we get a message from the app, display it on the page
 	ThunkableWebviewerExtension.receiveMessage(function(message) {
+	debug_div.innerHTML = message;
 	  let max = Math.max(...counters);
 	  let maxIndex = counters.indexOf(max);
 	  console.log(counterNames[maxIndex] + ": " + max);
