@@ -62,6 +62,7 @@
 	  let max = Math.max(...counters);
 	  let maxIndex = counters.indexOf(max);
 	  console.log(counterNames[maxIndex] + ": " + max);
+	  ThunkableWebviewerExtension.postMessage(counterNames[maxIndex] + ": " + max);
 	});
 	</script>
 </body>
