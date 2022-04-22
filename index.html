@@ -54,8 +54,12 @@
 		
 	// when we get a message from the app, display it on the page
 	ThunkableWebviewerExtension.receiveMessage(function(message) {
-	  let max = Math.max(...counters);
-	  let maxIndex = counters.indexOf(max);
+	  let storedCounters = counters.map((x) => x);
+	  let max = Math.max(...storedCounters);
+	  let maxIndex = storedCounters.indexOf(max);
+	  if(maxIndex == -1){
+	  	maxIndex = 0;
+	  }
 	  console.log(counterNames[maxIndex] + ": " + max);
 	  ThunkableWebviewerExtension.postMessage(maxIndex);
 	});
