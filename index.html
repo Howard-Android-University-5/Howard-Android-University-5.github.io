@@ -5,7 +5,7 @@
 </head>
 <body>
   <div><b>Results</b></div>
-  <div id="emotion">Emotion: -</div>
+  <div id="emotion"></div>
   <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js" type="text/javascript"></script>
   <script src="https://sdk.morphcast.com/mphtools/v1.0/mphtools.js"></script>
 	<script src="https://ai-sdk.morphcast.com/v1.16/ai-sdk.js"></script>
@@ -19,19 +19,49 @@
 	   .then(({ start, stop }) => start());
 	
 	const emo_div = document.querySelector("#emotion");
-	let counter = 0;
+
+	let happyCounter = 0;
+	let sadCounter = 0;
+	let angryCounter = 0;
+	let fearCounter = 0;
+	let disgustCounter = 0;
+	let counters = [0, 0, 0, 0, 0];
+	let counterNames = ["Happy", "Sad", "Angry", "Fear", "Disgust"];
 
 	window.addEventListener(CY.modules().FACE_EMOTION.eventName, (evt) => {
 	 emo_div.innerHTML = 'Emotion: ' + evt.detail.output.dominantEmotion;
-	counter += 1;
-	alert(counter);
-	 alert(evt.detail.output.dominantEmotion);
+		if(evt.detail.output.dominantEmotion == "Happy"){
+			counters[0] += 1;
+			//happyCounter += 1;
+			//console.log("Happy: " + happyCounter);
+		}
+		if(evt.detail.output.dominantEmotion == "Sad"){
+			counters[1] += 1;
+			//sadCounter += 1;
+			//console.log("Sad: " + sadCounter);
+		}
+		if(evt.detail.output.dominantEmotion == "Angry"){
+			counters[2] += 1;
+			//angryCounter += 1;
+			//console.log("Angry: " + AngryCounter);
+		}
+		if(evt.detail.output.dominantEmotion == "Fear"){
+			counters[3] += 1;
+			//fearCounter += 1;
+			//console.log("Fear: " + fearCounter);
+		}
+		if(evt.detail.output.dominantEmotion == "Disgust"){
+			counters[4] += 1;
+			//disgustCounter += 1;
+			//console.log("Disgust: " + disgustCounter);
+		}
 	});
 		
 	// when we get a message from the app, display it on the page
 	ThunkableWebviewerExtension.receiveMessage(function(message) {
-	  // Do something with your message
-	  alert(message)
+	  let max = Math.max(...counters);
+	  let maxIndex = counters.indexOf(max);
+	  console.log(counterNames[maxIndex] + ": " + max);
 	});
 	</script>
 </body>
