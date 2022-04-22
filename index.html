@@ -24,6 +24,8 @@
 	const gen_div = document.querySelector("#gender");
 	const emo_div = document.querySelector("#emotion");
 
+	gen_div.innerHTML = 'GGGender: ';
+		
 	window.addEventListener(CY.modules().FACE_AGE.eventName, (evt) => {
 	 age_div.innerHTML = 'Age: ' + evt.detail.output.numericAge;
 	});
@@ -35,7 +37,6 @@
 	window.addEventListener(CY.modules().FACE_EMOTION.eventName, (evt) => {
 	 emo_div.innerHTML = 'Emotion: ' + evt.detail.output.dominantEmotion;
 	});
-	gen_div.innerHTML = 'GGGender: ' + evt.detail.output.mostConfident;
 	</script>
 </body>
 </html>
