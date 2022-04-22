@@ -5,8 +5,6 @@
 </head>
 <body>
   <div><b>Results</b></div>
-  <div id="age">Age: -</div>
-  <div id="gender">Gender: -</div>
   <div id="emotion">Emotion: -</div>
   <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js" type="text/javascript"></script>
   <script src="https://sdk.morphcast.com/mphtools/v1.0/mphtools.js"></script>
@@ -19,23 +17,21 @@
 	   .addModule(CY.modules().FACE_EMOTION.name)
 	   .load()
 	   .then(({ start, stop }) => start());
-
-	const age_div = document.querySelector("#age");
-	const gen_div = document.querySelector("#gender");
+	
 	const emo_div = document.querySelector("#emotion");
-
-	gen_div.innerHTML = 'GGGender: ';
-		
-	window.addEventListener(CY.modules().FACE_AGE.eventName, (evt) => {
-	 age_div.innerHTML = 'Age: ' + evt.detail.output.numericAge;
-	});
-
-	window.addEventListener(CY.modules().FACE_GENDER.eventName, (evt) => {
-	 gen_div.innerHTML = 'Geender: ' + evt.detail.output.mostConfident;
-	});
+	const counter = 0;
 
 	window.addEventListener(CY.modules().FACE_EMOTION.eventName, (evt) => {
 	 emo_div.innerHTML = 'Emotion: ' + evt.detail.output.dominantEmotion;
+	counter += 1;
+	alert(counter);
+	 alert(evt.detail.output.dominantEmotion);
+	});
+		
+	// when we get a message from the app, display it on the page
+	ThunkableWebviewerExtension.receiveMessage(function(message) {
+	  // Do something with your message
+	  alert(message)
 	});
 	</script>
 </body>
