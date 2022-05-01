@@ -14,8 +14,8 @@
 	
 	function initRecog(){
 		
-	if(document.getElementById("BeginButton").textContent == 'CLICK ME TO END'){
-		document.getElementById("BeginButton").textContent = "CLICK ME TO BEGIN";
+	if(document.getElementById("BeginButton").textContent == 'BEGIN EMOTION ANALYSIS'){
+		document.getElementById("BeginButton").textContent = "BEGIN EMOTION ANALYSIS";
 		let max = Math.max(...counters);
 		let maxIndex = counters.indexOf(max);
 		console.log(counterNames[maxIndex] + ": " + max);
@@ -50,7 +50,7 @@
 		}
 	});
 	
-	document.getElementById("BeginButton").textContent = 'CLICK ME TO END';
+	document.getElementById("BeginButton").textContent = 'END EMOTION ANALYSIS';
 	}
 		
 	// when we get a message from the app, display it on the page
