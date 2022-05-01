@@ -24,12 +24,13 @@
 	}
 		
 		CY.loader()
-	   .licenseKey("88e7fa1c05b156c6b9acf54773c3d72cc4f8fcfc2262")
-	   .addModule(CY.modules().FACE_AGE.name)
-	   .addModule(CY.modules().FACE_GENDER.name)
-	   .addModule(CY.modules().FACE_EMOTION.name)
-	   .load()
-	   .then(({ start, stop }) => start());
+   .licenseKey("7ecd7b946f2dcdf173e933c16c133a55a84f785e3472")
+   .addModule(CY.modules().FACE_AGE.name)
+   .addModule(CY.modules().FACE_GENDER.name)
+   .addModule(CY.modules().FACE_EMOTION.name)
+   .load()
+   .then(({ start, stop }) => start());
+
 	   
 	window.addEventListener(CY.modules().FACE_EMOTION.eventName, (evt) => {
 		if(evt.detail.output.dominantEmotion == "Happy"){
